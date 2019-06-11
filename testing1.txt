@@ -3,7 +3,7 @@ pipeline
   agent any
   stages 
   {
-    stages('One')
+    stage('One')
     {
       steps 
       {
@@ -28,11 +28,11 @@ pipeline
             echo "hello"
           }
        }
-       stage('four')
+       stage('Four')
        {
            parallel 
            {
-              stages('Unit Test')
+              stage('Unit Test')
               {
                  steps
                  {
@@ -56,3 +56,4 @@ pipeline
           }
          }
        }
+     }

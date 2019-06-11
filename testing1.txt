@@ -1,0 +1,58 @@
+pipeline 
+{
+  agent any
+  stages 
+  {
+    stages('One')
+    {
+      steps 
+      {
+        echo 'Hi this is Surojit'
+      }
+    }
+     stage('Two')
+     {
+       steps
+       {
+          input("Do you want to proceed")
+       }
+      }
+      stage('Three')
+      {
+          when
+          {
+            not { branch "master" }
+          }
+          steps 
+          {
+            echo "hello"
+          }
+       }
+       stage('four')
+       {
+           parallel 
+           {
+              stages('Unit Test')
+              {
+                 steps
+                 {
+                    echo "Running the unit test.."
+                 }
+              }
+         stage('Integration Test')
+         {
+             agent 
+             {
+                docker 
+                {
+                   reusable false
+                   image 'ubunttu'
+                }
+             }
+             steps 
+             {
+                echo "Running the integration test"
+             }
+          }
+         }
+       }

@@ -45,7 +45,7 @@ pipeline
              {
                 docker 
                 {
-                   reusable false
+                   reuseNode false
                    image 'ubunttu'
                 }
              }
